@@ -26,5 +26,9 @@ jobs:
         run: git config --global user.email "actions@github.com" && git config --global user.name "Github Actions"
       - name: Apply Patches
         run: ./gradlew applyPatches
-      - name: Build
-        run: ./gradlew build
+      - name: Create reobf bundler jar
+        run: ./gradlew createReobfBundlerJar
+      - name: Upload a Build Artifact
+        uses: actions/upload-artifact@v3.1.2
+        with:
+          path: build/libs/folia-bundler-1.19.4-R0.1-SNAPSHOT-reobf.jar
